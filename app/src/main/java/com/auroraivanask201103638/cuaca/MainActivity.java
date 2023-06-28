@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView _recyclerView1;
     private SwipeRefreshLayout _swipeRefreshLayout1;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,29 +30,26 @@ public class MainActivity extends AppCompatActivity {
         initRecyclerView1();
         initSwipeRefreshLayout();
     }
-
     private void initSwipeRefreshLayout()
     {
         _swipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                initSwipeRefreshLayout();
+                initRecyclerView1();
                 _swipeRefreshLayout1.setRefreshing(false);
             }
         });
     }
 
     private void initRecyclerView1(){
-        String url = "https://api.openweathermap.org/data/2.5/forecast?id=1630789&appid=0b85b90dcb6c2ff93306bc784c5b3131";
+        String url = "https://api.openweathermap.org/data/2.5/forecast?id=1630789&appid=3ce001a40393540d4e9a027e45c7c283";
         AsyncHttpClient ahc = new AsyncHttpClient();
 
         ahc.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                //Log.d("tw", new String(responseBody));
                 Gson gson = new Gson();
                 RootModel rm = gson.fromJson(new String(responseBody), RootModel.class);
-                //Log.d("tw", rm.getListModelList().get(0).getDt_txt());
                 RecyclerView.LayoutManager lm = new LinearLayoutManager(MainActivity.this);
                 CuacaAdapter ca = new CuacaAdapter(rm);
 
@@ -65,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
             }
         });
     }

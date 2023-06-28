@@ -13,17 +13,11 @@ public class ListModel {
 
     public ListModel() {}
 
-    public MainModel getMainModel() {
-        return mainModel;
-    }
+    public MainModel getMainModel() { return mainModel; }
 
-    public void setMainModel(MainModel mainModel) {
-        this.mainModel = mainModel;
-    }
+    public void setMainModel(MainModel mainModel) { this.mainModel = mainModel; }
 
-    public List<WeatherModel> getWeatherModelList() {
-        return weatherModelList;
-    }
+    public List<WeatherModel> getWeatherModelList() { return weatherModelList; }
 
     public void setWeatherModelList(List<WeatherModel> weatherModelList) {
         this.weatherModelList = weatherModelList;
@@ -32,7 +26,6 @@ public class ListModel {
     public String getDt_txt() {
         return dt_txt;
     }
-
     public void setDt_txt(String dt_txt) {
         this.dt_txt = dt_txt;
     }
